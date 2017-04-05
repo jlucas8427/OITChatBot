@@ -16,9 +16,20 @@ namespace OITChatBot
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            /*Original Template Code, Saving original in case we opt out of LUIS for Q&A implementation
             if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+            }
+            else
+            {
+                HandleSystemMessage(activity);
+            }
+            */
+            //This is if else block will determine the intent and formulate a response
+            if (activity.Type == ActivityTypes.Message)
+            {
+                await Conversation.SendAsync(activity, () => new OITChatBotLuisDialog());
             }
             else
             {
