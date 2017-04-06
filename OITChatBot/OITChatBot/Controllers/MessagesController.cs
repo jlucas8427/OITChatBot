@@ -17,6 +17,7 @@ namespace OITChatBot
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             /*Original Template Code, Saving original in case we opt out of LUIS for Q&A implementation
+             *This if else also uses RootDialog.cs to relay messages
             if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
