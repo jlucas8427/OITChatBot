@@ -9,7 +9,7 @@ using Microsoft.Bot.Builder.Luis.Models;
 
 namespace OITChatBot
 {
-    [LuisModel("b0fdd4b9-4b4a-4731-9943-99d37ab65587", "450b44bb31be48259054b12f0f32cc1c")]
+    [LuisModel("76a5efb1-e127-4637-9ff8-aad1c8378f4e", "7c8b455d7e754c2da71591c53d6d0f10")]
     [Serializable]
     public class OITChatBotLuisDialog : LuisDialog<object>
     {

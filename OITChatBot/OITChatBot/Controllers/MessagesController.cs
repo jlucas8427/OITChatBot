@@ -28,6 +28,7 @@ namespace OITChatBot
             }
             */
             //This is if else block will determine the intent and formulate a response
+            /*
             if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new OITChatBotLuisDialog());
@@ -36,7 +37,14 @@ namespace OITChatBot
             {
                 HandleSystemMessage(activity);
             }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
+            */
+            switch (activity.GetActivityType())
+            {
+                case ActivityTypes.Message:
+                    await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
+                    break;
+            }
+                    var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
