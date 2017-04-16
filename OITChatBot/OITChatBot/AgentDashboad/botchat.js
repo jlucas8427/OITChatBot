@@ -21871,7 +21871,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        type: "message",
 	        text: text,
 	        from: from,
-	        locale: locale
+	       locale: locale
 	    })
 	        .subscribe(function (id) {
 	        exports.konsole.log("success sending postBack", id);
@@ -21898,6 +21898,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            from: from,
 	            locale: locale
 	        } });
+    
 	};
 	exports.renderIfNonempty = function (value, renderer) {
 	    if (value !== undefined && value !== null && (typeof value !== 'string' || value.length > 0))
@@ -21914,7 +21915,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 	// note: container of this element must have CSS position of either absolute or relative
-	var ResizeDetector = function (props) {
+    
+    var ResizeDetector = function (props) {
 	    // adapted to React from https://github.com/developit/simple-element-resize-detector
 	    return React.createElement("iframe", { style: { position: 'absolute', left: '0', top: '-100%', width: '100%', height: '100%', margin: '1px 0 0', border: 'none', opacity: 0, visibility: 'hidden', pointerEvents: 'none' }, ref: function (frame) { return frame.contentWindow.onresize = props.onresize; } });
 	};
@@ -22138,7 +22140,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        })
 	            .catch(function (error) { return _this.catchExpiredToken(error); });
 	    };
-	    DirectLine.prototype.postMessageWithAttachments = function (_a) {
+        //here it is
+        DirectLine.prototype.postMessageWithAttachments = function (_a) {
 	        var attachments = _a.attachments, messageWithoutAttachments = __rest(_a, ["attachments"]);
 	        var _this = this;
 	        var formData;
@@ -31967,10 +31970,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var localizedStrings = {
 	    'en-us': {
-	        title: "Chat",
-	        send: "Send",
+	        title: "OIT Chat View",
+            send: "Send",
+            /*
 	        unknownFile: "[File of type '%1']",
 	        unknownCard: "[Unknown Card '%1']",
+            */
 	        receiptTax: "Tax",
 	        receiptTotal: "Total",
 	        messageRetry: "retry",
