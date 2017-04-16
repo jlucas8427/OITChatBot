@@ -28,6 +28,7 @@ namespace OITChatBot
             }
             */
             //This is if else block will determine the intent and formulate a response
+            //Using Luis
             /*
             if (activity.Type == ActivityTypes.Message)
             {
@@ -38,13 +39,16 @@ namespace OITChatBot
                 HandleSystemMessage(activity);
             }
             */
+            //This is if else block will determine the intent and formulate a response
+            //Using QnA
             switch (activity.GetActivityType())
             {
                 case ActivityTypes.Message:
                     await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
                     break;
             }
-                    var response = Request.CreateResponse(HttpStatusCode.OK);
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
