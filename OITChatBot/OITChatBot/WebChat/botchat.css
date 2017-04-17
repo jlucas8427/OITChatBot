@@ -1,4 +1,7 @@
-﻿/* reset */
+﻿/*  reset 
+    OIT Orange   = #f15822
+    Default Blue = #3a96dd
+*/
 
     body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
         font-family: 'Segoe UI', sans-serif;
@@ -182,7 +185,7 @@
 
     .wc-card button {
         background-color: transparent;
-        color: #3A96DD;
+        color: #f15822;
         min-height: 32px;
         width: 100%;
         padding: 0 16px;
@@ -190,13 +193,13 @@
 
     .wc-card button:hover {
         background-color: transparent;
-        border-color: #3A96DD;
-        color: #3A96DD;
+        border-color: #f15822;
+        color: #f15822;
     }
 
     .wc-card button:active {
-        background-color: #3A96DD;
-        border-color: #3A96DD;
+        background-color: #f15822;
+        border-color: #f15822;
         color: white;
     }
 
@@ -410,12 +413,12 @@
     }
 
     .wc-message-from-me .wc-message-content {
-        background-color: #3A96DD;
+        background-color: #f15822;
         color: #fff;
     }
 
     .wc-message-from-me svg.wc-message-callout path {
-        fill: #3A96DD;
+        fill: #f15822;
     }
         
     .wc-message-from-me svg.wc-message-callout path.point-left {
@@ -497,7 +500,7 @@
     }
 
     .wc-console.has-text .wc-send svg {
-        fill: #3A96DD;
+        fill: #f15822;
     }
 
 /* animation */
