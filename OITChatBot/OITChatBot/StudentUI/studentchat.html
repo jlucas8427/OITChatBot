@@ -1,31 +1,15 @@
 ﻿<!DOCTYPE html>
 <!-- 
-NOTE: This sample requires a bot which can send and receive specific event messages. Follow the instructions on 
-https://github.com/ryanvolum/backChannelBot to deploy such a bot. 
-
-This is a sample HTML file which shows how to embed an instance of WebChat which listens for event activities. For the sake
-of demonstration it specifically listens for events of name "changeBackground". Using the backChannelBot sample 
-our page can listen for events of name "changeBackground" and send events of name "buttonClicked". This 
-highlights the ability for a bot to communicate with a page that embeds the bot through WebChat. 
- 
-1. Build the project: "npm run build"
-2. Start a web server: "npm run start"
-3. Aim your browser at "http://localhost:8000/samples/backchannel?[parameters as listed below]"
-
-For ease of testing, several parameters can be set in the query string:
-    * s = Direct Line secret, or
-    * t = Direct Line token (obtained by calling Direct Line's Generate Token)
-    * domain = optionally, the URL of an alternate Direct Line endpoint
-    * webSocket = set to 'true' to use WebSocket to receive messages (currently defaults to false)
-    * userid, username = id (and optionally name) of bot user
-    * botid, botname = id (and optionally name) of bot
+    Mark 4/16/17 - This file began as a copy of the AgentChat UI and has been customized for the Student interface. 
+                    I mostly wanted just the .css so I could get it looking more like our SRS, the index.htm is simply 
+                    here to show the style. Fixed the reference to the studentchat.js too.
 -->
 <html>
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Bot Chat</title>
-	<link href="./botchat.css" rel="stylesheet" />
+	<title>Student Interface</title>
+	<link href="./studentchat.css" rel="stylesheet" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<style>
@@ -41,18 +25,11 @@ For ease of testing, several parameters can be set in the query string:
 </head>
 
 <body>
+    <!-- Commented out this header to clean up the Agent interface - Mark 4/16 -->
 	<!--<h2 style="font-family:Segoe UI;" id="heading">OIT Staff View</h2>-->
-    <div >
-	    
-        <div style="float:left">
-	        <button id="connect" onclick="connect()" style="width:160px;height:60px">Connect</button>
-        </div>
-        <div>
-            <button onclick="stopConversation()" style="width:160px;height:60px">Stop Conversation with User</button>
-	    </div>
-    </div>
+
     <div id="BotChatGoesHere" style="float:left"></div>
-    <script src="./botchat.js"></script>
+    <script src="./studentchat.js"></script> 
 	<script>
             var params = BotChat.queryParams(location.search);
             var connected = false;
@@ -97,13 +74,14 @@ For ease of testing, several parameters can be set in the query string:
                     return;
                 console.log("success");
                 connected = !connected;
-                if(connected) {
-                    document.getElementById("connect").innerHTML="Disconnect";
+                if (connected) {
+                    // Mark 4/16/17: edited button text to be more descriptive
+                    document.getElementById("connect").innerHTML ="Stop being available";
                     document.getElementById("heading").innerHTML="You are now connected and are available for chat.";
                 }
                 else {
-                    document.getElementById("connect").innerHTML="Connect";
-                    document.getElementById("heading").innerHTML="You have been disconnected. Press connect to make yourself available.";
+                    document.getElementById("connect").innerHTML ="Become available to users";
+                    document.getElementById("heading").innerHTML ="You have been disconnected. Press Become available button to make yourself available.";
                 }
             };
 
