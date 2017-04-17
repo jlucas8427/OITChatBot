@@ -250,15 +250,3 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-/OITChatBot/OITChatBot/default.html
-/OITChatBot/OITChatBot/Images/OIT.png
-/OITChatBot/OITChatBot/AgentDashboad/botchat.css
-/OITChatBot/OITChatBot/AgentDashboad/botchat.js
-/OITChatBot/OITChatBot/AgentDashboad/index.html
-/OITChatBot/OITChatBot/default.htm
-/OITChatBot/OITChatBot/FrontdeskUI/frontdeskchat.css
-/OITChatBot/OITChatBot/FrontdeskUI/frontdeskchat.html
-/OITChatBot/OITChatBot/FrontdeskUI/frontdeskchat.js
-/OITChatBot/OITChatBot/FrontdeskUI/README.txt
-/OITChatBot/OITChatBot/StudentUI/studentchat.css
-/OITChatBot/OITChatBot/StudentUI/studentchat.js
