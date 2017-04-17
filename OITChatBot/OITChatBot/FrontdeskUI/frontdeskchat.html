@@ -1,15 +1,17 @@
 ﻿<!DOCTYPE html>
-<!-- 
-    Mark 4/16/17 - This file began as a copy of the AgentChat UI and has been customized for the Student interface. 
-                    I mostly wanted just the .css so I could get it looking more like our SRS, the index.htm is simply 
-                    here to show the style. Fixed the reference to the studentchat.js too.
+<!--
+    Mark 4/16/17 - This file began as a copy of the AgentChat UI and has been customized for the Front Desk interface.
+                    I added some boarders to make the chat session look more like our SRS and the blue color comes 
+                    straight off the UTSA site. Button lables have been modified for context, but they could be set to 
+                    whatever the end users want. 
 -->
+
 <html>
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Student Interface</title>
-	<link href="./studentchat.css" rel="stylesheet" />
+	<title>Bot Chat</title>
+	<link href="./frontdeskchat.css" rel="stylesheet" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<style>
@@ -27,9 +29,18 @@
 <body>
     <!-- Commented out this header to clean up the Agent interface - Mark 4/16 -->
 	<!--<h2 style="font-family:Segoe UI;" id="heading">OIT Staff View</h2>-->
-
+    <div >
+	    
+        <div style="float:left">
+            <!-- Mark 4/16: edited button label -->
+	        <button id="connect" onclick="connect()" style="width:165px;height:60px">Become available to users</button>
+        </div>
+        <div>
+            <button onclick="stopConversation()" style="width:165px;height:60px">Stop Conversation with User</button>
+	    </div>
+    </div>
     <div id="BotChatGoesHere" style="float:left"></div>
-    <script src="./studentchat.js"></script> 
+    <script src="./frontdeskchat.js"></script>
 	<script>
             var params = BotChat.queryParams(location.search);
             var connected = false;
