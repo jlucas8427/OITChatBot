@@ -139,6 +139,7 @@
     <Content Include="AgentDashboad\botchat.css" />
     <Content Include="AgentDashboad\botchat.js" />
     <Content Include="AgentDashboad\index.html" />
+    <Content Include="App_Code\ChatBot.html" />
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="App_Code\botchat.scss" />
     <None Include="Properties\PublishProfiles\OITChatBot2017 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -168,6 +170,9 @@
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\App_LocalResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
