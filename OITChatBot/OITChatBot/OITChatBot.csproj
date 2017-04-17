@@ -146,6 +146,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="WebPages\Iframe.html" />
     <Content Include="WebPages\Widget.html" />
   </ItemGroup>
   <ItemGroup>
