@@ -136,18 +136,18 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\OIT.png" />
-    <Content Include="WebChat\botchat.css" />
-    <Content Include="WebChat\botchat.js" />
-    <Content Include="WebPages\Agent.html" />
-    <Content Include="default.html" />
+    <Content Include="StudentUI\studentchat.js" />
+    <Content Include="StudentUI\studentchat.css" />
+    <Content Include="StudentUI\studentchat.html" />
+    <Content Include="FrontdeskUI\frontdeskchat.css" />
+    <Content Include="FrontdeskUI\frontdeskchat.js" />
+    <Content Include="FrontdeskUI\frontdeskchat.html" />
+    <Content Include="default.htm" />
     <Content Include="Global.asax" />
-    <Content Include="WebPages\Client.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="WebPages\Iframe.html" />
-    <Content Include="WebPages\Widget.html" />
+    <Content Include="WidgetTest.html" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -172,7 +172,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

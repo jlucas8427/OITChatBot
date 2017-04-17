@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<!-- 
+    Mark 4/16/17 - This file began as a copy of the AgentChat UI and has been customized for the Student interface. 
+                    I mostly wanted just the .css so I could get it looking more like our SRS, the index.htm is simply 
+                    here to show the style.
+-->
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Student Interface</title>
+	<link href="./studentchat.css" rel="stylesheet" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+		.wc-chatview-panel {
+			width: 320px;
+			height: 500px;
+			position: relative;
+		}
+        .h2{
+            font-family: Segoe UI;
+        }
+	</style>
+</head>
+
+<body>
+    <!-- Commented out this header to clean up the Agent interface - Mark 4/16 -->
+	<!--<h2 style="font-family:Segoe UI;" id="heading">OIT Staff View</h2>-->
+
+    <div id="BotChatGoesHere" style="float:left"></div>
+    <script src="./studentchat.js"></script>
+	<script>
+            var params = BotChat.queryParams(location.search);
+            var connected = false;
+            var user = {
+                id: params['userid'] || 'userid',
+                name: params["username"] || 'username'
+                };
+            
+            var bot = {
+                id: params['botid'] || 'botid',
+                name: params["botname"] || 'botname'
+            };
+
+            window['botchatDebug'] = params['debug'] && params['debug'] === "true";
+
+            var botConnection = new BotChat.DirectLine({
+                secret: params['s'] || '7NGhVUCWoWY.cwA.zx4.r8UzSlapuNPpckiCIDsE9o8NjYA8MsRqTvU4i6K3mRo',
+                token: params['t'],
+                domain: params['domain'],
+                webSocket: params['webSocket'] && params['webSocket'] === "true" // defaults to true
+            });
+
+            BotChat.App({
+                botConnection: botConnection,
+                user: user,
+                bot: bot
+            }, document.getElementById("BotChatGoesHere"));
+
+            const connect = () => {
+                var name;
+                if(!connected)
+                    name = "connect"
+                else
+                    name = "disconnect"
+                botConnection
+                    .postActivity({type: "event", value: "", from: user, name: name})
+                    .subscribe(connectionSuccess);
+            };
+
+            const connectionSuccess = (id) => {
+                if(id==="retry")
+                    return;
+                console.log("success");
+                connected = !connected;
+                if (connected) {
+                    // Mark 4/16/17: edited button text to be more descriptive
+                    document.getElementById("connect").innerHTML ="Stop being available";
+                    document.getElementById("heading").innerHTML="You are now connected and are available for chat.";
+                }
+                else {
+                    document.getElementById("connect").innerHTML ="Become available to users";
+                    document.getElementById("heading").innerHTML ="You have been disconnected. Press Become available button to make yourself available.";
+                }
+            };
+
+            const stopConversation = () => {
+                botConnection
+                    .postActivity({type: "event", value: "", from: user, name: "stopConversation"})
+                    .subscribe(id => console.log("success"));
+            };
+
+        </script>
+</body>
+
+</html>
