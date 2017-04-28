@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
-using static AgentTransferBot.Utilities;
+using static OITChatBot.Utilities;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     public class BotStateMappingStorage : IAgentUserMapping
     {

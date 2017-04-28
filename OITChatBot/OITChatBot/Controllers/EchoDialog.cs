@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     [Serializable]
     public class EchoDialog : IDialog<object>
@@ -26,7 +26,7 @@ namespace AgentTransferBot
         private async Task MessageReceived(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
             var message = await result;
-            if (message.Text.StartsWith("a"))
+            if (message.Text.Contains("transfer"))
             {
                 var agent = await _userToAgent.IntitiateConversationWithAgentAsync(message as Activity, default(CancellationToken));
                 if (agent == null)

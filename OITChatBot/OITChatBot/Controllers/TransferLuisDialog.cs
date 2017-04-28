@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     [Serializable]
     [LuisModel("76a5efb1-e127-4637-9ff8-aad1c8378f4e", "7c8b455d7e754c2da71591c53d6d0f10")]

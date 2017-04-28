@@ -4,7 +4,7 @@ using Microsoft.Bot.Connector;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     public interface IAgentService
     {

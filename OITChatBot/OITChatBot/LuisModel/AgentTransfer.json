@@ -84,6 +84,11 @@
       "text": "contact customer care",
       "intent": "AgentTransfer",
       "entities": []
+    },
+    {
+      "text": "connect to front desk",
+      "intent": "AgentTransfer",
+      "entities": []
     }
   ]
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     [Serializable]
     public class AgentMetaData

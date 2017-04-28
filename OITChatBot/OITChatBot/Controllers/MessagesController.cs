@@ -1,9 +1,17 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Microsoft.Bot.Builder.Dialogs;
+using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
+using Newtonsoft.Json;
+using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Internals;
+using Autofac;
+using System.Threading;
+using static OITChatBot.Utilities;
 
 namespace OITChatBot
 {
@@ -38,7 +46,7 @@ namespace OITChatBot
             {
                 HandleSystemMessage(activity);
             }
-            */
+            
             //This is if else block will determine the intent and formulate a response
             //Using QnA
             switch (activity.GetActivityType())
@@ -47,12 +55,29 @@ namespace OITChatBot
                     await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
                     break;
             }
+            */
+
+            if (activity.Type == ActivityTypes.Message)
+            {
+                if (activity.Text.Contains("transfer"))
+                {
+                    await SendAsync(activity, (scope) => new EchoDialog(scope.Resolve<IUserToAgent>()));
+                }
+                else
+                {
+                    await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
+                }
+            }
+            else
+            {
+                await HandleSystemMessage(activity);
+            }
 
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        private async Task<Activity> HandleSystemMessage(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
@@ -77,8 +102,68 @@ namespace OITChatBot
             else if (message.Type == ActivityTypes.Ping)
             {
             }
+            else if (message.Type == ActivityTypes.Event)
+            {
+                using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, message))
+                {
+                    var cancellationToken = default(CancellationToken);
+                    var agentService = scope.Resolve<IAgentService>();
+                    switch (message.AsEventActivity().Name)
+                    {
+                        case "connect":
+                            await agentService.RegisterAgentAsync(message, cancellationToken);
+                            break;
+                        case "disconnect":
+                            await agentService.UnregisterAgentAsync(message, cancellationToken);
+                            break;
+                        case "stopConversation":
+                            await StopConversation(agentService, message, cancellationToken);
+                            await agentService.RegisterAgentAsync(message, cancellationToken);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
 
             return null;
+        }
+
+        private async Task StopConversation(IAgentService agentService, Activity agentActivity, CancellationToken cancellationToken)
+        {
+            var user = await agentService.GetUserInConversationAsync(agentActivity, cancellationToken);
+            var agentReply = agentActivity.CreateReply();
+            if (user == null)
+            {
+                agentReply.Text = "Hey! You were not talking to anyone.";
+                await SendToConversationAsync(agentReply);
+                return;
+            }
+
+            var userActivity = user.ConversationReference.GetPostToBotMessage();
+            await agentService.StopAgentUserConversationAsync(
+                userActivity,
+                agentActivity,
+                cancellationToken);
+
+            var userReply = userActivity.CreateReply();
+            userReply.Text = "You have been disconnected from our representative.";
+            await SendToConversationAsync(userReply);
+            userReply.Text = "But we can still talk :)";
+            await SendToConversationAsync(userReply);
+
+            agentReply.Text = "You have stopped the conversation.";
+            await SendToConversationAsync(agentReply);
+        }
+
+        private async Task SendAsync(IMessageActivity toBot, Func<ILifetimeScope, IDialog<object>> MakeRoot, CancellationToken token = default(CancellationToken))
+        {
+            using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, toBot))
+            {
+                DialogModule_MakeRoot.Register(scope, () => MakeRoot(scope));
+                var task = scope.Resolve<IPostToBot>();
+                await task.PostAsync(toBot, token);
+            }
         }
     }
 }

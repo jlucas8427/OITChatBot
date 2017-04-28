@@ -9,7 +9,7 @@ using System.Threading;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 
-namespace AgentTransferBot.Scorable
+namespace OITChatBot.Scorable
 {
     public class AgentToUserScorable : ScorableBase<IActivity, bool, double>
     {

@@ -3,10 +3,10 @@ using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Connector;
 using System.Threading;
 using System.Threading.Tasks;
-using static AgentTransferBot.Utilities;
+using static OITChatBot.Utilities;
 using System;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     public class AgentService : IAgentService
     {

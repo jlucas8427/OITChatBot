@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.Bot.Builder.Scorables.Internals;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     public class UserToAgentScorable : ScorableBase<IActivity, bool, double>
     {

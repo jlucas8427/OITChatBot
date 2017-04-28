@@ -7,9 +7,9 @@ using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Builder.Dialogs;
 using System.Threading;
-using static AgentTransferBot.Utilities;
+using static OITChatBot.Utilities;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     public class UserToAgentRouter : IUserToAgent
     {

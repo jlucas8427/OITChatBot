@@ -2,7 +2,7 @@
 using Microsoft.Bot.Connector;
 using System;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     [Serializable]
     public class Agent

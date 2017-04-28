@@ -1,4 +1,4 @@
-﻿using AgentTransferBot.Scorable;
+﻿using OITChatBot.Scorable;
 using Autofac;
 using Microsoft.Bot.Builder.Internals.Fibers;
 using Microsoft.Bot.Builder.Scorables;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgentTransferBot
+namespace OITChatBot
 {
     public class AgentModule: Module
     {
