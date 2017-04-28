@@ -41,18 +41,17 @@ For ease of testing, several parameters can be set in the query string:
 </head>
 
 <body>
-	<!--<h2 style="font-family:Segoe UI;" id="heading">OIT Staff View</h2>-->
+	<h2 style="font-family:Segoe UI;" id="heading">Agent Console!</h2>
     <div >
-	    
+	    <div id="BotChatGoesHere" style="float:left"></div>
         <div style="float:left">
-	        <button id="connect" onclick="connect()" style="width:160px;height:60px">Connect</button>
+	        <button id="connect" onclick="connect()" style="width:120px;height:60px">Connect</button>
         </div>
         <div>
-            <button onclick="stopConversation()" style="width:160px;height:60px">Stop Conversation with User</button>
+            <button onclick="stopConversation()" style="width:120px;height:60px">Stop Conversation with User</button>
 	    </div>
     </div>
-    <div id="BotChatGoesHere" style="float:left"></div>
-    <script src="/WebChat/botchat.js"></script>
+    <script src="./botchat.js"></script>
 	<script>
             var params = BotChat.queryParams(location.search);
             var connected = false;
