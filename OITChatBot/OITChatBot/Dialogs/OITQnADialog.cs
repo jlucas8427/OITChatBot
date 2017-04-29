@@ -18,7 +18,7 @@ namespace OITChatBot
         public override async Task NoMatchHandler(IDialogContext context, string originalQueryText)
         {
             await context.PostAsync($"Sorry, I couldn't find an answer for '{originalQueryText}'.");
-            await context.PostAsync("You can contact our front desk by typing \"connect to front desk\"");
+            await context.PostAsync("You can contact our front desk by typing \"transfer to front desk\"");
             context.Wait(MessageReceived);
         }
 

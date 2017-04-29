@@ -270,15 +270,12 @@
     <Compile Include="Agent\UserToAgentRouter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Controllers\EchoDialog.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Controllers\TransferLuisDialog.cs" />
+    <Compile Include="Dialogs\HandoffDialog.cs" />
     <Compile Include="Dialogs\OITQnADialog.cs" />
-    <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\OITChatBotLuisDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scorable\AgentToUserScorable.cs" />
     <Compile Include="Scorable\UserToAgentScorable.cs" />
@@ -286,7 +283,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="LuisModel\AgentTransfer.json" />
     <None Include="Properties\PublishProfiles\OITChatBot2017 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

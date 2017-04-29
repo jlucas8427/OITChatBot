@@ -12,70 +12,24 @@ using Microsoft.Bot.Builder.Dialogs.Internals;
 using Autofac;
 using System.Threading;
 using static OITChatBot.Utilities;
+using OITChatBot.Dialogs;
 
 namespace OITChatBot
 {
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        public string msg;
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            /*Original Template Code, Saving original in case we opt out of LUIS for Q&A implementation
-             *This if else also uses RootDialog.cs to relay messages
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
-            }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            */
-            //This is if else block will determine the intent and formulate a response
-            //Using Luis
-            /*
-            if (activity.Type == ActivityTypes.Message)
-            {
-                await Conversation.SendAsync(activity, () => new OITChatBotLuisDialog());
-            }
-            else
-            {
-                HandleSystemMessage(activity);
-            }
-            
-            //This is if else block will determine the intent and formulate a response
-            //Using QnA
-            switch (activity.GetActivityType())
-            {
-                case ActivityTypes.Message:
-                    await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
-                    break;
-            }
-            */
-
-            if (activity.Type == ActivityTypes.Message)
-            {
-                //-----------------------------------------------------------------------------
-                //-----------------------------------------------------------------------------
-                //-----------------------------------------------------------------------------
-                //-----------------------------------------------------------------------------
-                //Handoff is happening here but only works for the first message from user
-                if (activity.Text.Contains("transfer"))
-                {
-                    await SendAsync(activity, (scope) => new EchoDialog(scope.Resolve<IUserToAgent>()));
-                }
-                else
-                {
-                    await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
-                }
-                //-----------------------------------------------------------------------------
-                //-----------------------------------------------------------------------------
-                //-----------------------------------------------------------------------------
-                //-----------------------------------------------------------------------------
+                await SendAsync(activity, (scope) => new HandoffDialog(scope.Resolve<IUserToAgent>()));
             }
             else
             {
