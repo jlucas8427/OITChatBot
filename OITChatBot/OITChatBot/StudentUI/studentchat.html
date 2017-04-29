@@ -28,70 +28,16 @@
     <!-- Commented out this header to clean up the Agent interface - Mark 4/16 -->
 	<!--<h2 style="font-family:Segoe UI;" id="heading">OIT Staff View</h2>-->
 
-    <div id="BotChatGoesHere" style="float:left"></div>
+    <div id="bot" style="float:left"></div>
     <script src="./studentchat.js"></script> 
-	<script>
-            var params = BotChat.queryParams(location.search);
-            var connected = false;
-            var user = {
-                id: params['userid'] || 'userid',
-                name: params["username"] || 'username'
-                };
-            
-            var bot = {
-                id: params['botid'] || 'botid',
-                name: params["botname"] || 'botname'
-            };
-
-            window['botchatDebug'] = params['debug'] && params['debug'] === "true";
-
-            var botConnection = new BotChat.DirectLine({
-                secret: params['s'] || '54jTqoBENY0.cwA.5Mw.hexwvdnFysxHwljHpsCmV4mP5zvGyDo3P-2O6XzMxVE',
-                token: params['t'],
-                domain: params['domain'],
-                webSocket: params['webSocket'] && params['webSocket'] === "true" // defaults to true
-            });
-
+    <script>
             BotChat.App({
-                botConnection: botConnection,
-                user: user,
-                bot: bot
-            }, document.getElementById("BotChatGoesHere"));
-
-            const connect = () => {
-                var name;
-                if(!connected)
-                    name = "connect"
-                else
-                    name = "disconnect"
-                botConnection
-                    .postActivity({type: "event", value: "", from: user, name: name})
-                    .subscribe(connectionSuccess);
-            };
-
-            const connectionSuccess = (id) => {
-                if(id==="retry")
-                    return;
-                console.log("success");
-                connected = !connected;
-                if (connected) {
-                    // Mark 4/16/17: edited button text to be more descriptive
-                    document.getElementById("connect").innerHTML ="Stop being available";
-                    document.getElementById("heading").innerHTML="You are now connected and are available for chat.";
-                }
-                else {
-                    document.getElementById("connect").innerHTML ="Become available to users";
-                    document.getElementById("heading").innerHTML ="You have been disconnected. Press Become available button to make yourself available.";
-                }
-            };
-
-            const stopConversation = () => {
-                botConnection
-                    .postActivity({type: "event", value: "", from: user, name: "stopConversation"})
-                    .subscribe(id => console.log("success"));
-            };
-
-        </script>
+                directLine: { secret: '54jTqoBENY0.cwA.5Mw.hexwvdnFysxHwljHpsCmV4mP5zvGyDo3P-2O6XzMxVE' },
+                user: { id: 'You' },
+                bot: { id: 'botid' },
+                resize: 'detect'
+            }, document.getElementById("bot"));
+    </script>
 </body>
 
 </html>
