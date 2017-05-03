@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
-using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Internals;
 using Autofac;
@@ -19,8 +16,6 @@ namespace OITChatBot
     [BotAuthentication]
     public class MessagesController : ApiController
     {
-        public string msg;
-
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -67,6 +62,8 @@ namespace OITChatBot
             }
             else if (message.Type == ActivityTypes.Event)
             {
+                //If the activity is of type event, check for an agent button press
+                //and perform the appropriate action
                 using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, message))
                 {
                     var cancellationToken = default(CancellationToken);
@@ -92,6 +89,7 @@ namespace OITChatBot
             return null;
         }
 
+        //Stops conversation between an agent and user
         private async Task StopConversation(IAgentService agentService, Activity agentActivity, CancellationToken cancellationToken)
         {
             var user = await agentService.GetUserInConversationAsync(agentActivity, cancellationToken);
@@ -119,6 +117,7 @@ namespace OITChatBot
             await SendToConversationAsync(agentReply);
         }
 
+        //Send activity to a dialog for processing
         private async Task SendAsync(IMessageActivity toBot, Func<ILifetimeScope, IDialog<object>> MakeRoot, CancellationToken token = default(CancellationToken))
         {
             using (var scope = DialogModule.BeginLifetimeScope(Conversation.Container, toBot))

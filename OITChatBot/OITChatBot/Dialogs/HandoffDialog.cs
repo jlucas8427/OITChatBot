@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.CognitiveServices.QnAMaker;
-using System.Text.RegularExpressions;
 
 namespace OITChatBot.Dialogs
 {
@@ -33,24 +28,19 @@ namespace OITChatBot.Dialogs
         {
             var message = await argument;
 
-            //Call the QnAMaker Dialog if the message is a question.
+            //Send activity to QnA dialog if a transfer is not specified
             if (message.Text == "transfer to front desk")
             {
                 var agent = await _userToAgent.IntitiateConversationWithAgentAsync(message as Activity, default(CancellationToken));
                 if (agent == null)
-                    await context.PostAsync("All our customer care representatives are busy at the moment. Please try after some time.");
+                    await context.PostAsync("All of our front desk staff are currently busy at the moment. Please wait and try again.");
                 context.Done(true);
-                //await context.Forward(new EchoDialog(_userToAgent), AfterQnA, message, CancellationToken.None);
-                //await context.Forward(new BasicQnAMakerDialog(), AfterQnA, message, CancellationToken.None);
             }
             else
             {
                 await context.Forward(new BasicQnAMakerDialog(), AfterQnA, message, CancellationToken.None);
-                //await Conversation.SendAsync(activity, () => new BasicQnAMakerDialog());
                 context.Wait(MessageReceivedAsync);
             }
-
-
         }
 
         //Callback, after the QnAMaker Dialog returns a result.

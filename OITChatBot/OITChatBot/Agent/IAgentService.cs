@@ -1,6 +1,4 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Dialogs.Internals;
-using Microsoft.Bot.Connector;
+﻿using Microsoft.Bot.Connector;
 using System.Threading;
 using System.Threading.Tasks;
 

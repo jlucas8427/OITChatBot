@@ -1,9 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Scorables.Internals;
 using Microsoft.Bot.Connector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.Bot.Builder.Dialogs;

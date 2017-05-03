@@ -4,7 +4,6 @@ using Microsoft.Bot.Connector;
 using System.Threading;
 using System.Threading.Tasks;
 using static OITChatBot.Utilities;
-using System;
 
 namespace OITChatBot
 {
