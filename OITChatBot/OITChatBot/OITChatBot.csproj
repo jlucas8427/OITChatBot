@@ -231,9 +231,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgentDashboard\botchat.css" />
-    <Content Include="AgentDashboard\botchat.js" />
-    <Content Include="AgentDashboard\index.html" />
     <Content Include="Images\OIT.png" />
     <Content Include="WebChat\botchat.css" />
     <Content Include="WebChat\botchat.js" />
